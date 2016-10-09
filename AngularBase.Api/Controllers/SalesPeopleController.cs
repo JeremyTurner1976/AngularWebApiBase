@@ -8,26 +8,34 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using AngularBase.Api.Abstract;
 using AngularBase.Data.AdventureWorks;
 using Newtonsoft.Json;
 
 namespace AngularBase.Api.Controllers
 {
-	public class SalesPeopleController : ApiController
+	public class SalesPeopleController : BaseApiController
 	{
-		private AdventureWorks db = new AdventureWorks();
-
 		// GET: api/SalesPeople
 		public IQueryable<SalesPerson> GetSalesPersons()
 		{
-			return db.SalesPersons;
+			return AdventureWorks.SalesPersons;
 		}
 
 		// GET: api/SalesPeople/5
 		[ResponseType(typeof(SalesPerson))]
 		public IHttpActionResult GetSalesPerson(int id)
 		{
-			SalesPerson salesPerson = db.SalesPersons.Find(id);
+			//SalesPerson salesPerson = AdventureWorks.SalesPersons.Find(id);
+
+			SalesPerson salesPerson = 
+				AdventureWorks.SalesPersons
+				//.Include(x => x.SalesOrderHeaders)
+				//.Include(x => x.SalesPersonQuotaHistories)
+				//.Include(x => x.SalesTerritoryHistories)
+				//.Include(x => x.Stores)
+				.FirstOrDefault(x => x.BusinessEntityID == id);
+
 			if (salesPerson == null)
 			{
 				return NotFound();
@@ -50,11 +58,11 @@ namespace AngularBase.Api.Controllers
 				return BadRequest();
 			}
 
-			db.Entry(salesPerson).State = EntityState.Modified;
+			AdventureWorks.Entry(salesPerson).State = EntityState.Modified;
 
 			try
 			{
-				db.SaveChanges();
+				AdventureWorks.SaveChanges();
 			}
 			catch (DbUpdateConcurrencyException)
 			{
@@ -80,11 +88,11 @@ namespace AngularBase.Api.Controllers
 				return BadRequest(ModelState);
 			}
 
-			db.SalesPersons.Add(salesPerson);
+			AdventureWorks.SalesPersons.Add(salesPerson);
 
 			try
 			{
-				db.SaveChanges();
+				AdventureWorks.SaveChanges();
 			}
 			catch (DbUpdateException)
 			{
@@ -105,14 +113,14 @@ namespace AngularBase.Api.Controllers
 		[ResponseType(typeof(SalesPerson))]
 		public IHttpActionResult DeleteSalesPerson(int id)
 		{
-			SalesPerson salesPerson = db.SalesPersons.Find(id);
+			SalesPerson salesPerson = AdventureWorks.SalesPersons.Find(id);
 			if (salesPerson == null)
 			{
 				return NotFound();
 			}
 
-			db.SalesPersons.Remove(salesPerson);
-			db.SaveChanges();
+			AdventureWorks.SalesPersons.Remove(salesPerson);
+			AdventureWorks.SaveChanges();
 
 			return Ok(salesPerson);
 		}
@@ -121,14 +129,14 @@ namespace AngularBase.Api.Controllers
 		{
 			if (disposing)
 			{
-				db.Dispose();
+				AdventureWorks.Dispose();
 			}
 			base.Dispose(disposing);
 		}
 
 		private bool SalesPersonExists(int id)
 		{
-			return db.SalesPersons.Count(e => e.BusinessEntityID == id) > 0;
+			return AdventureWorks.SalesPersons.Count(e => e.BusinessEntityID == id) > 0;
 		}
 	}
 }
