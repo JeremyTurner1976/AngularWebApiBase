@@ -23,7 +23,7 @@ namespace AngularBase.Api.Controllers
 		// GET: api/Products
 		public IQueryable<Product> GetProducts()
 		{
-			return AdventureWorks.Products;
+			return AdventureWorks.Products.Where(x => x.Name != null && x.ProductID <= 1000);
 		}
 
 		// GET: api/Products/5

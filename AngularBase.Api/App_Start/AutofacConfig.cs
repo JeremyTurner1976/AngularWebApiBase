@@ -17,10 +17,12 @@ namespace AngularBase.Api
 			var builder = new ContainerBuilder();
 
 			//Implement the specific injectors for Data and the view models
-			builder.RegisterType<AdventureWorks>().AsSelf().As<DbContext>().PropertiesAutowired().SingleInstance();
+			builder.RegisterType<AdventureWorks>().AsSelf().As<DbContext>()
+                .PropertiesAutowired().InstancePerLifetimeScope();
 
-			// Register your Web API controllers
-			builder.RegisterApiControllers(typeof (ConstantsController).Assembly);
+
+            // Register your Web API controllers
+            builder.RegisterApiControllers(typeof (ConstantsController).Assembly);
 			builder.RegisterApiControllers(typeof (ProductsController).Assembly);
 			builder.RegisterApiControllers(typeof (SalesPeopleController).Assembly);
 
