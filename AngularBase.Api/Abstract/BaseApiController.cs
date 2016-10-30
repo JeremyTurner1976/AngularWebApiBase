@@ -10,6 +10,7 @@ namespace AngularBase.Api.Abstract
 {
 	public class BaseApiController : ApiController
 	{
-		protected AdventureWorks AdventureWorks { get; set; } = new AdventureWorks();
+		//injected via autofac, if called in constructor
+		protected AdventureWorks AdventureWorks { get; set; }
 	}
 }

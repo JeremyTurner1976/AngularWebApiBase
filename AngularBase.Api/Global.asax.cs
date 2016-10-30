@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
 
 namespace AngularBase.Api
 {
@@ -18,8 +19,24 @@ namespace AngularBase.Api
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+			AutofacConfig.RegisterAutofac();
 			SqlServerTypes.Utilities.LoadNativeAssemblies(Server.MapPath("~/bin"));
 		}
+
+		//In Global.asax to catch all errors
+		//At this point the only C# try catch logic wanted is when logging an error, or wanting to skip a minor exception
+		protected void Application_Error(object sender, EventArgs e)
+		{
+			Exception ex = Server.GetLastError();
+
+			//using (var scope = AutofacConfig.Container.BeginLifetimeScope())
+			//{
+			//	var uiService = scope.Resolve<IUiService>();
+			//	uiService.HandleError(ex); ;
+			//}
+
+			Server.ClearError();
+		}
+
 	}
 }

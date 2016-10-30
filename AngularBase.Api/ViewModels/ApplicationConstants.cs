@@ -10,6 +10,5 @@ namespace AngularBase.Api.ViewModels
 	{
 		public IQueryable<ProductCategory> ProductCategories { get; set; }
 		public IQueryable<ProductSubcategory> ProductSubcategories { get; set; }
-
 	}
 }

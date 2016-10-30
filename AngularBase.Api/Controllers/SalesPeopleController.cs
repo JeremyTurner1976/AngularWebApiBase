@@ -17,9 +17,9 @@ namespace AngularBase.Api.Controllers
 	public class SalesPeopleController : BaseApiController
 	{
 		// GET: api/SalesPeople
-		public IQueryable<SalesPerson> GetSalesPersons()
+		public SalesPeopleController(AdventureWorks adventureWorks)
 		{
-			return AdventureWorks.SalesPersons;
+			AdventureWorks = adventureWorks;
 		}
 
 		// GET: api/SalesPeople/5

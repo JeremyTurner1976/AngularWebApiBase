@@ -15,6 +15,11 @@ namespace AngularBase.Api.Controllers
 {
 	public class ProductsController : BaseApiController
 	{
+		public ProductsController(AdventureWorks adventureWorks)
+		{
+			AdventureWorks = adventureWorks;
+		}
+
 		// GET: api/Products
 		public IQueryable<Product> GetProducts()
 		{

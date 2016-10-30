@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +13,12 @@ namespace AngularBase.Api.Controllers
 {
 	public class ConstantsController : BaseApiController
 	{
-		public IHttpActionResult GetApplicationConstants()
+		public ConstantsController(AdventureWorks adventureWorks)
+		{
+			AdventureWorks = adventureWorks;
+		}
+
+		public ApplicationConstants GetApplicationConstants()
 		{
 			ApplicationConstants applicationConstants = new ApplicationConstants
 			{
@@ -20,7 +26,7 @@ namespace AngularBase.Api.Controllers
 				ProductSubcategories = AdventureWorks.ProductSubcategories
 			};
 
-			return Ok(applicationConstants);
+			return applicationConstants;
 		}
 	}
 }
