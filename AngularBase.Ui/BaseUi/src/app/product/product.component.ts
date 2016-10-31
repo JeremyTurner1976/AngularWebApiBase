@@ -12,7 +12,6 @@ export class ProductComponent implements OnInit {
 
   product: Product = new Product();
   products: Product[] = [];
-  editId: number = null;
   errorMessage: string = "";
 
   constructor(private productsService : ProductsService) {  }
@@ -26,14 +25,14 @@ export class ProductComponent implements OnInit {
       .subscribe((products: Product[]) => this.products = products);
   }
 
-    save(product: Product) {
+  save(product: Product) {
     this.productsService.update(product)
-        .subscribe((status: boolean) => {
-            if (status) {
-                this.editId = 0;
-            } else {
-                this.errorMessage = 'Unable to save customer';
-            }
-        })
+      .subscribe((status: boolean) => {
+          if (status) {
+            this.product = product;
+          } else {
+              this.errorMessage = 'Unable to save product.';
+          }
+      });
   }
 }
