@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBase.Data", "Angular
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBase.Api", "AngularBase.Api\AngularBase.Api.csproj", "{4F88157B-679D-4444-BBD1-08B120CF0137}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AngularBase.Ui", "AngularBase.Ui", "{CD0D1C89-B0B5-4919-8AA6-98C4DAF53E07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
