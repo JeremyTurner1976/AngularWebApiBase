@@ -1,16 +1,36 @@
+import { from } from 'rxjs/observable/from';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from
+  './app.component';
 
-/* Constants */
-import { APP_PROVIDERS } from'./app.providers';
+import { APP_PROVIDERS } from
+  './app.providers';
 
-/* Features */
-import { ProductsModule } from './products/products.module';
-import { SalesPeopleModule } from './sales-people/sales-people.module';
+//Shared Helpers
+import{ CommonModule } from
+  './shared/common';
+import{ ExceptionsModule } from
+  './shared/exceptions';
+
+//Shared Components
+import { PopoutComponent } from
+  './shared/components/popout/popout.component';
+import { ToasterComponent } from
+  './shared/components/toaster/toaster.component';
+
+//Features
+import { ProductsModule } from
+  './modules/products/products.module';
+import { SalesPeopleModule } from
+  './modules/sales-people/sales-people.module';
+
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +40,9 @@ import { SalesPeopleModule } from './sales-people/sales-people.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    ProductsModule,
+    SalesPeopleModule
   ],
   providers: [
     APP_PROVIDERS

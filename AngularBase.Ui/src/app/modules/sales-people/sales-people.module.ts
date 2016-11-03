@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 import { SalesPeopleComponent } from './sales-people.component';
 
 @NgModule({
-  imports: [
-    CommonModule
+  declarations: [
+    SalesPeopleComponent
   ],
-  declarations: [SalesPeopleComponent]
+  imports: [
+    SharedModule
+  ],
+  bootstrap: [SalesPeopleComponent]
 })
 export class SalesPeopleModule { }
