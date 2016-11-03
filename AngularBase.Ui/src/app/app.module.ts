@@ -4,13 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
+
+/* Constants */
 import { APP_PROVIDERS } from'./app.providers';
+
+/* Features */
+import { ProductsModule } from './products/products.module';
+import { SalesPeopleModule } from './sales-people/sales-people.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
