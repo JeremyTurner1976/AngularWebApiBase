@@ -21,12 +21,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     //sample data pull
-    // this.productsService.getProduct(1)
-    //   .subscribe((product: Product) => this.product = product);
+    this.productsService.getProduct(1)
+      .subscribe((product: Product) => this.product = product);
 
-    //  this.productsService.getProducts()
-    //   .subscribe((products: Product[]) =>
-    //     this.products = products);
+     this.productsService.getProducts()
+      .subscribe((products: Product[]) =>
+        this.products = products);
   }
 
   save(product: Product) {

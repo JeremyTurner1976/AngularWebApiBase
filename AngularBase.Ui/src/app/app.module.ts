@@ -28,15 +28,22 @@ import { ProductsModule } from
   './modules/products/products.module';
 import { SalesPeopleModule } from
   './modules/sales-people/sales-people.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
+    RouterModule.forRoot([
+      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
